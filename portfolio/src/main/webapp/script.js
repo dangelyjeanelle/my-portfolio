@@ -17,12 +17,29 @@
  */
 function addRandomFact() {
   const facts =
-      ['Last year was my first ever doing cheerleading', 'I am a native Spanish speaker', 'I once sprained both of my ankles while walking', 'I know how to speak and write some Mandarin'];
+      [ 'I was born in Venezuela, so I am a native Spanish speaker', 
+      'I learned to play the violin when I was 7 years old', 
+      'I played Annie in the Venezuelan version of the musical, which helped me get over my fear of dogs.',
+      'I came to the United States and joined math club at my school, where I met my best friends',
+      'After failing to convince my family of getting a dog, I was excited to volunteer at the animal shelter',
+      'In 2019, I graduated from Doral Academy',
+      'I attended CSSI at Google. I did not know how to bike but that did not stop me from getting a photo',
+      'Last year was my first ever doing cheerleading. Go tigers!',
+      ];
+
+  const images = 
+      ['/images/1.jpg','/images/2.jpg','/images/3.jpg','/images/4.jpg',
+      '/images/5.jpg','/images/6.jpg','/images/7.jpg','/images/8.jpg'
+      ];
 
   // Pick a random fact.
-  const fact = facts[Math.floor(Math.random() * facts.length)];
+  const rand = Math.floor(Math.random()*facts.length);
+  const fact = facts[rand];
+  const img = images[rand];
 
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
+  const image = document.getElementById('image');
+  image.src = img;
 }
