@@ -17,7 +17,10 @@
  */
 function addRandomFact() {
   const facts =
-      ['Last year was my first ever doing cheerleading', 'I am a native Spanish speaker', 'I once sprained both of my ankles while walking', 'I know how to speak and write some Mandarin'];
+      ['Last year was my first ever doing cheerleading', 
+      'I am a native Spanish speaker', 
+      'I once sprained both of my ankles while walking', 
+      'I know how to speak and write some Mandarin'];
 
   // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
