@@ -43,3 +43,9 @@ function addRandomFact() {
   const image = document.getElementById('image');
   image.src = img;
 }
+
+function greetMe() {
+  fetch('/data').then(response => response.text()).then((me) => {
+    document.getElementById('greeting').innerText = me;
+  });
+}
