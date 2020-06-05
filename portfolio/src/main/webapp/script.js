@@ -45,7 +45,18 @@ function addRandomFact() {
 }
 
 function greetMe() {
-  fetch('/data').then(response => response.text()).then((me) => {
-    document.getElementById('greeting').innerText = me;
+  fetch('/data').then(response => response.json()).then((greet) => {
+
+      const greetingElement = document.getElementById('greeting');
+      greetingElement.innerHTML = '';
+      greetingElement.append(createParagraph(greet.line1));
+      greetingElement.append(createParagraph(greet.line2));
+      greetingElement.append(createParagraph(greet.line3));
   });
+}
+
+function createParagraph(text) {
+    const paragraph = document.createElement('p');
+    paragraph.innerText = text;
+    return paragraph;
 }
