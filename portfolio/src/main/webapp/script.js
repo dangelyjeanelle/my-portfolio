@@ -44,14 +44,15 @@ function addRandomFact() {
   image.src = img;
 }
 
-function greetMe() {
-  fetch('/data').then(response => response.json()).then((greet) => {
+function seeComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
 
-      const greetingElement = document.getElementById('greeting');
-      greetingElement.innerHTML = '';
-      greetingElement.append(createParagraph(greet.line1));
-      greetingElement.append(createParagraph(greet.line2));
-      greetingElement.append(createParagraph(greet.line3));
+      const commentElement = document.getElementById('comm');
+      commentElement.innerHTML = '';
+      for (comment in comments) {
+        commentElement.appendChild(createParagraph(comments[comment]));
+      }
+      
   });
 }
 

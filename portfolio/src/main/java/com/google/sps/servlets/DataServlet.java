@@ -24,34 +24,46 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private ArrayList<String> message;
+    private ArrayList<String> comments = new ArrayList<String>();
 
-  @Override
-  public void init() {
-      message = new ArrayList<String>();
-      message.add("Hello Dangely");
-      message.add("This is a test");
-      message.add("Have a nice day!");
-  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertMsgtoJason(message);
+    String json = convertMsgtoJason(comments);
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String comment = getParameter(request, "text-input", "");
+    comments.add(comment);
+    response.setContentType("text/html;");
+    for(int i = 0; i < comments.size(); i++) {
+        response.getWriter().println(comments.get(i) + "\n");
+    }
+    response.sendRedirect("/index.html");
+  }
+
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+
   private String convertMsgtoJason(ArrayList<String> msg) {
       String json = "{";
-    json += "\"line1\": ";
-    json += "\"" + msg.get(0) + "\"";
-    json += ", ";
-    json += "\"line2\": ";
-    json += "\"" + msg.get(1) + "\"";
-    json += ", ";
-    json += "\"line3\": ";
-    json += "\"" + msg.get(2) + "\"";
-    json += "}";
+      for (int i = 0; i < msg.size(); i++) {
+          json += "\"comment" + i + "\": ";
+          json += "\"" + msg.get(i) + "\"";
+          json += ", ";
+      }
+
+      json = json.substring(0,json.length()-2);
+      json += "}";
+
     return json;
   }
 }
