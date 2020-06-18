@@ -44,6 +44,11 @@ function addRandomFact() {
   image.src = img;
 }
 
+function numCommentsForm() {
+document.getElementById("comments").submit();
+seeComments();
+}
+
 function seeComments() {
   fetch('/data').then(response => response.json()).then((comments) => {
 

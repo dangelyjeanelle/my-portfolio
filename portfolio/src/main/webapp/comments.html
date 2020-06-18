@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dangely's Portfolio Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="content">
+
+    <form id="comments" action="" method="GET">
+    <label for="numOfComments">Select number of comments:</label>
+    <select name="numOfComments" id="numOfComments" onchange="numCommentsForm()">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+    <input type="submit" value="View comments" onclick="seeComments()"/>
+    </form>
+
+    <p id="comm"> </p>
+      
+    </div>
+  </body>
+</html>

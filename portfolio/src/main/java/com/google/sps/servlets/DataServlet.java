@@ -34,17 +34,23 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    int commentsRequested = Integer.parseInt(request.getParameter("numOfComments"));
     Query query = new Query("Comment");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
+    int counter = 0;
     ArrayList<String> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
+      if(counter >= commentsRequested) {
+          break;
+      } 
+      else {
       String text = (String) entity.getProperty("text");
-
       comments.add(text);
+      counter++;
+      }
+      System.out.println(counter);
     }
-
     String json = convertMsgtoJason(comments);
     response.setContentType("application/json;");
     response.getWriter().println(json);
@@ -57,11 +63,6 @@ public class DataServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", comment);
 
-    // comments.add(comment);
-    // response.setContentType("text/html;");
-    // for(int i = 0; i < comments.size(); i++) {
-    //     response.getWriter().println(comments.get(i) + "\n");
-    // }
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
     response.sendRedirect("/index.html");
