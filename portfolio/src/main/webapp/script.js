@@ -13,16 +13,33 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a random fact to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addRandomFact() {
+  const facts =
+      [ 'I was born in Venezuela, so I am a native Spanish speaker', 
+      'I learned to play the violin when I was 7 years old', 
+      'I played Annie in the Venezuelan version of the musical, which helped me get over my fear of dogs.',
+      'I came to the United States and joined math club at my school, where I met my best friends',
+      'After failing to convince my family of getting a dog, I was excited to volunteer at the animal shelter',
+      'In 2019, I graduated from Doral Academy',
+      'I attended CSSI at Google. I did not know how to bike but that did not stop me from getting a photo',
+      'Last year was my first ever doing cheerleading. Go tigers!',
+      ];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const images = 
+      ['/images/1.jpg','/images/2.jpg','/images/3.jpg','/images/4.jpg',
+      '/images/5.jpg','/images/6.jpg','/images/7.jpg','/images/8.jpg'
+      ];
+
+  // Pick a random fact.
+  const rand = Math.floor(Math.random()*facts.length);
+  const fact = facts[rand];
+  const img = images[rand];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
+  const image = document.getElementById('image');
+  image.src = img;
 }
