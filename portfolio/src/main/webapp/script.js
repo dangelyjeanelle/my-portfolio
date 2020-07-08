@@ -44,11 +44,6 @@ function addRandomFact() {
   image.src = img;
 }
 
-function numCommentsForm() {
-document.getElementById("comments").submit();
-seeComments();
-}
-
 function seeComments() {
   let num = document.getElementById("numOfComments").value.toString();
   console.log(num);
