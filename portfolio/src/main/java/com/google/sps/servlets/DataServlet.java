@@ -20,7 +20,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import java.util.*;
+import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int commentsRequested = Integer.parseInt(request.getParameter("numOfComments"));
+    int commentsRequested = Integer.parseInt(request.getParameter("num"));
     Query query = new Query("Comment");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -49,7 +50,6 @@ public class DataServlet extends HttpServlet {
       comments.add(text);
       counter++;
       }
-      System.out.println(counter);
     }
     String json = convertMsgtoJason(comments);
     response.setContentType("application/json;");
@@ -83,10 +83,10 @@ public class DataServlet extends HttpServlet {
           json += "\"" + msg.get(i) + "\"";
           json += ", ";
       }
-
-      json = json.substring(0,json.length()-2);
+      if(json.length() > 2) {
+        json = json.substring(0,json.length()-2);
+      }
       json += "}";
-
     return json;
   }
 }

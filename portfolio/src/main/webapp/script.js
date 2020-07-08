@@ -50,14 +50,24 @@ seeComments();
 }
 
 function seeComments() {
-  fetch('/data').then(response => response.json()).then((comments) => {
+  let num = document.getElementById("numOfComments").value.toString();
+  console.log(num);
+  fetch(`/data?num=${num}`).then(response => response.json()).then((comments) => {
+    const commentElement = document.getElementById('comm');
+    commentElement.innerHTML = '';
+    for (comment in comments) {
+      commentElement.appendChild(createParagraph(comments[comment]));
+    }  
+  });
+}
 
-      const commentElement = document.getElementById('comm');
-      commentElement.innerHTML = '';
-      for (comment in comments) {
-        commentElement.appendChild(createParagraph(comments[comment]));
-      }
-      
+function deleteAllComments() {
+  fetch('/delete').then(response => response.json()).then((comments) => {
+    const commentElement = document.getElementById('comm');
+    commentElement.innerHTML = '';
+    for (comment in comments) {
+      commentElement.appendChild(createParagraph(comments[comment]));
+    }  
   });
 }
 
