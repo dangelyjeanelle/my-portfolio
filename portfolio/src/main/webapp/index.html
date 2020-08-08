@@ -8,16 +8,27 @@
   </head>
   <body>
     <div id="content">
-      <h1>Dangely's Portfolio</h1>
+      <h2>Dangely's Portfolio</h2>
       <p>I am Dangely, a STEP intern. 
         I currently live in Miami, Florida and study Computer Science at Princeton University. </p>
-      <p>Welcome to my life in pictures!.</p>
+      <p>Welcome to my life in pictures!</p>
       <p>Click here to get a random image:</p>
       <button onclick="addRandomFact()">About Me</button>
       <div>
           <p id="fact-container"> </p> 
           <img id = "image" src="/images/Dangely.jpg" alt="image of Dangely">
       </div>
+
+      <form action="/data" method="POST">
+      <p>Write a comment:</p>
+      <textarea name="text-input"></textarea>
+      <br/>
+      <input type="submit" value="Post comment"/>
+    </form>
+
+    <br/><br/>
+    <a href="/comments.html"><button>See other comments</button>
+      
     </div>
   </body>
 </html>

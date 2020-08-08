@@ -43,3 +43,39 @@ function addRandomFact() {
   const image = document.getElementById('image');
   image.src = img;
 }
+
+function seeComments() {
+  let num = document.getElementById("numOfComments").value.toString();
+  console.log(num);
+  fetch(`/data?num=${num}`).then(response => response.json()).then((comments) => {
+    const commentElement = document.getElementById('comm');
+    commentElement.innerHTML = '';
+    for (comment in comments) {
+      commentElement.appendChild(createParagraph(comments[comment]));
+    }  
+  });
+}
+
+function deleteAllComments() {
+  fetch('/delete').then(response => response.json()).then((comments) => {
+    const commentElement = document.getElementById('comm');
+    commentElement.innerHTML = '';
+    for (comment in comments) {
+      commentElement.appendChild(createParagraph(comments[comment]));
+    }  
+  });
+}
+
+function createParagraph(text) {
+    const paragraph = document.createElement('p');
+    paragraph.innerText = text;
+    return paragraph;
+}
+
+function authentication() {
+    fetch('/authentication').then(response => response.json()).then((email) => {
+    const identificationElement = document.getElementById('who');
+    identificationElement.innerHTML = 'Logged in as: ';
+    identificationElement.innerHTML+=email;
+  });
+}
