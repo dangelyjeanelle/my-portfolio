@@ -71,3 +71,11 @@ function createParagraph(text) {
     paragraph.innerText = text;
     return paragraph;
 }
+
+function authentication() {
+    fetch('/authentication').then(response => response.json()).then((email) => {
+    const identificationElement = document.getElementById('who');
+    identificationElement.innerHTML = 'Logged in as: ';
+    identificationElement.innerHTML+=email;
+  });
+}

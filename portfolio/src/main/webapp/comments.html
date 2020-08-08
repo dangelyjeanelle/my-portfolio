@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="authentication()">
     <div id="content">
+        <div id="who"></div>
         <label for="numOfComments">Please select the number of comments you want to see:</label><br>
         <input type="number" name="numOfComments" id="numOfComments" step=1 value=5>
         <br><br>
